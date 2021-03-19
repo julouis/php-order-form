@@ -42,16 +42,45 @@ $products = [
 
 $totalValue = 0;
 
-echo $_GET['email'];
-echo $_GET['street'];
-echo $_GET['streetnumber'];
-echo $_GET['city'];
-echo $_GET['zipcode'];
 
 
+/* $email = $_GET['email'];
+$street = $_GET['street'];
+$streetnumber = $_GET['streetnumber'];
+$city = $_GET['city'];
+$zipcode = $_GET['zipcode']; */
 
+// CHECK EMPTY FORM
+
+
+$error= "";
 if (empty($_GET['email'])) {
-    $wrongMail = "Please enter a valid mail";
+    $error = "<li>Please enter a mail</li>";
 };
+if (empty($_GET['street'])) {
+    $error .= "<li>Please enter a street</li>";
+};
+if (empty($_GET['streetnumber'])) {
+    $error .= "<li>Please enter a street number</li>";
+};
+if (empty($_GET['city'])) {
+    $error .= "<li>Please enter a city</li>";
+};
+if (empty($_GET['zipcode'])) {
+    $error .= "<li>Please enter a zipcode</li>";
+};
+
+print_r($_GET);
+
+
+
+/* if (count($_GET)>0){
+    $key=array_keys($_GET);
+    $val=array_values($_GET);
+    for ($i;$i<count($_GET);$i++){
+        ${$key[$i]};
+    }
+}
+ */
 
 require 'form-view.php';

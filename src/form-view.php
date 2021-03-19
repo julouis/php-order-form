@@ -22,7 +22,7 @@
                 </li>
             </ul>
         </nav>
-        <form method="get" action="index.php">
+        <form method="get">
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="email">E-mail:</label>
@@ -75,7 +75,12 @@
 
         <footer>You already ordered <strong>&euro; <?php echo $totalValue ?></strong> in pizza(s) and drinks.</footer>
     </div>
-
+    
+    <?php if($error) { ?>
+    <div class="alert alert-danger" role="alert">
+        <?php echo $error; ?>
+    </div>
+    <?php } ?>
     <style>
         footer {
             text-align: center;
@@ -83,4 +88,5 @@
     </style>
 
 </body>
+
 </html>
