@@ -5,8 +5,6 @@ declare(strict_types=1);
 //we are going to use session variables so we need to enable sessions
 session_start();
 
-$wrongMail = "Email is required";
-
 function whatIsHappening() {
     echo '<h2>$_GET</h2>';
     var_dump($_GET);
