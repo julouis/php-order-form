@@ -26,7 +26,7 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="email">E-mail:</label>
-                    <input type="email" id="email" name="email" class="form-control" placeholder="" />
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email adress" value="<?php echo checkEmptyGet('email') ?>" />
                 </div>
                 <div></div>
             </div>
@@ -37,32 +37,39 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="street">Street:</label>
-                        <input type="text" name="street" id="street" class="form-control">
+                        <input type="text" name="street" id="street" class="form-control" placeholder="Enter your street adress" value="<?php echo checkEmptyGet('street') ?>">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="streetnumber">Street number:</label>
-                        <input type="number" id="streetnumber" name="streetnumber" class="form-control">
+                        <input type="number" id="streetnumber" name="streetnumber" class="form-control" placeholder="Enter your street number" value="<?php echo checkEmptyGet('streetnumber') ?>">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="city">City:</label>
-                        <input type="text" id="city" name="city" class="form-control">
+                        <input type="text" id="city" name="city" class="form-control" placeholder="Enter your city name" value="<?php echo checkEmptyGet('city') ?>">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="zipcode">Zipcode</label>
-                        <input type="number" id="zipcode" name="zipcode" class="form-control">
+                        <input type="number" id="zipcode" name="zipcode" class="form-control" placeholder="Enter your zip code" value="<?php echo checkEmptyGet('zipcode') ?>">
                     </div>
                 </div>
             </fieldset>
 
             <fieldset>
                 <legend>Products</legend>
-                <?php foreach ($products as $i => $product) : ?>
+                <?php foreach ($pizzas as $i => $pizza) : ?>
                     <label>
-                        <input type="checkbox" value="1" name="products[<?php echo $i ?>]" /> <?php echo $product['name'] ?> -
-                        &euro; <?php echo number_format($product['price'], 2) ?></label><br />
+                        <input type="checkbox" value="1" name="pizzas[<?php echo $i ?>]" /> <?php echo $pizza['name'] ?> -
+                        &euro; <?php echo number_format($pizza['price'], 2) ?></label><br />
                 <?php endforeach; ?>
+                <?php if ($_GET['food'] === "0") {
+                    foreach ($drinks as $i => $drink) { ?>
+                        <label>
+                            <input type="checkbox" value="1" name="drinks[<?php echo $i ?>]" /> <?php echo $drink['name'] ?> -
+                            &euro; <?php echo number_format($drink['price'], 2) ?></label><br />
+                <?php }
+                } ?>
             </fieldset>
 
             <label>
@@ -70,17 +77,25 @@
                 Express delivery (+ 5 EUR)
             </label>
 
-            <button type="submit" class="btn btn-primary">Order!</button>
+            <button type="submit" name="submit" class="btn btn-primary">Order!</button>
         </form>
 
         <footer>You already ordered <strong>&euro; <?php echo $totalValue ?></strong> in pizza(s) and drinks.</footer>
     </div>
-    
-    <?php if($error) { ?>
-    <div class="alert alert-danger" role="alert">
-        <?php echo $error; ?>
-    </div>
+
+<!-- Message d'erreur si un espace de formulaire est laissé vide -->    
+ <?php if ($error) { ?>
+        <div class="alert alert-danger" role="alert">
+            <?php echo $error; ?>
+        </div>
+<?php } ?>
+<!-- Message si le formulaire est complet -->
+    <?php if ($formComplete) { ?>
+        <div class="alert alert-danger" role="alert">
+            <?php echo $formComplete; ?>
+        </div>
     <?php } ?>
+
     <style>
         footer {
             text-align: center;
