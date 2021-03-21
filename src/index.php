@@ -17,7 +17,13 @@ function whatIsHappening()
     var_dump($_SESSION);
 }
 
+
+
+
 //your products with their price.
+
+
+
 $pizzas = [
     ['name' => 'Margherita', 'price' => 8],
     ['name' => 'Hawaï', 'price' => 8.5],
@@ -95,4 +101,6 @@ print_r($_GET);
 }
  */
 
+
 require 'form-view.php';
+

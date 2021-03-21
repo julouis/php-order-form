@@ -58,16 +58,22 @@
 
             <fieldset>
                 <legend>Products</legend>
-                <?php foreach ($pizzas as $i => $pizza) : ?>
-                    <label>
-                        <input type="checkbox" value="1" name="pizzas[<?php echo $i ?>]" /> <?php echo $pizza['name'] ?> -
-                        &euro; <?php echo number_format($pizza['price'], 2) ?></label><br />
-                <?php endforeach; ?>
-                <?php if ($_GET['food'] === "0") {
+                <?php 
+
+// CHANGE OF DISPLAY FOR PIZZA OR DRINK DEPENDING ON THE GET FOOD
+// MUST PUT ISSET($_GET...) BEFORE TO AVOID ERROR OF EMPTY ARRAY
+
+                if (isset($_GET['food']) && $_GET['food']==="0") {
                     foreach ($drinks as $i => $drink) { ?>
                         <label>
                             <input type="checkbox" value="1" name="drinks[<?php echo $i ?>]" /> <?php echo $drink['name'] ?> -
                             &euro; <?php echo number_format($drink['price'], 2) ?></label><br />
+                    <?php }
+                } else {
+                    foreach ($pizzas as $i => $pizza) { ?>
+                        <label>
+                            <input type="checkbox" value="1" name="pizzas[<?php echo $i ?>]" /> <?php echo $pizza['name'] ?> -
+                            &euro; <?php echo number_format($pizza['price'], 2) ?></label><br />
                 <?php }
                 } ?>
             </fieldset>
@@ -83,13 +89,13 @@
         <footer>You already ordered <strong>&euro; <?php echo $totalValue ?></strong> in pizza(s) and drinks.</footer>
     </div>
 
-<!-- Message d'erreur si un espace de formulaire est laissé vide -->    
- <?php if ($error) { ?>
+    <!-- Message d'erreur si un espace de formulaire est laissé vide -->
+    <?php if ($error) { ?>
         <div class="alert alert-danger" role="alert">
             <?php echo $error; ?>
         </div>
-<?php } ?>
-<!-- Message si le formulaire est complet -->
+    <?php } ?>
+    <!-- Message si le formulaire est complet -->
     <?php if ($formComplete) { ?>
         <div class="alert alert-danger" role="alert">
             <?php echo $formComplete; ?>
