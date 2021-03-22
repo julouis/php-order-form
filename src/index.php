@@ -5,6 +5,35 @@ declare(strict_types=1);
 //we are going to use session variables so we need to enable sessions
 session_start();
 
+// SESSION GARDE EN MEMOIRE LES GET TANT QUE LE NAVIGATEUR N'EST PAS FERME
+// ISSET AVANT POUR VERIFIER LA PRESENCE D'UNE DONNE ET DONC EVITER UNE ERREUR
+
+$sessionEmail="";
+if (isset($_GET['email'])){
+    $_SESSION['email'] = $_GET['email'];
+}
+if (isset($_GET['street'])){
+    $_SESSION['street'] = $_GET['street'];
+}
+if (isset($_GET['streetnumber'])){
+    $_SESSION['streetnumber'] = $_GET['streetnumber'];
+}
+if (isset($_GET['city'])){
+    $_SESSION['city'] = $_GET['city'];
+}
+if (isset($_GET['zipcode'])){
+    $_SESSION['zipcode'] = $_GET['zipcode'];
+}
+if (isset($_GET['pizzas'])){
+    $_SESSION['pizzas'] = $_GET['pizzas'];
+}
+if (isset($_GET['drinks'])){
+    $_SESSION['drinks'] = $_GET['drinks'];
+}
+
+// CALCUL COMMANDE PIZZAS / DRINKS
+
+
 function whatIsHappening()
 {
     echo '<h2>$_GET</h2>';
@@ -16,7 +45,8 @@ function whatIsHappening()
     echo '<h2>$_SESSION</h2>';
     var_dump($_SESSION);
 }
-
+var_dump($_SESSION);
+/* whatIsHappening(); */
 
 
 
@@ -46,14 +76,11 @@ $drinks = [
 ];
 
 $totalValue = 0;
+echo '<br/>';
 
-
-
-/* $email = $_GET['email'];
-$street = $_GET['street'];
-$streetnumber = $_GET['streetnumber'];
-$city = $_GET['city'];
-$zipcode = $_GET['zipcode']; */
+var_dump($pizzas[1]);
+echo '<br/>';
+var_dump($_SESSION['pizzas']);
 
 // CHECK EMPTY FORM
 
@@ -75,20 +102,19 @@ $formComplete = "";
 if (isset($_GET['submit'])) {
     if (empty($_GET['email'])) {
         $error = "<li>Please enter a mail</li>";
-    } elseif (empty($_GET['street'])) {
+    } if (empty($_GET['street'])) {
         $error .= "<li>Please enter a street</li>";
-    } elseif (empty($_GET['streetnumber'])) {
+    } if (empty($_GET['streetnumber'])) {
         $error .= "<li>Please enter a street number</li>";
-    } elseif (empty($_GET['city'])) {
+    } if (empty($_GET['city'])) {
         $error .= "<li>Please enter a city</li>";
-    } elseif (empty($_GET['zipcode'])) {
+    } if (empty($_GET['zipcode'])) {
         $error .= "<li>Please enter a zipcode</li>";
     } else {
         $formComplete = "Form is complete, thank you";
     };
 }
 
-print_r($_GET);
 
 
 
@@ -102,5 +128,5 @@ print_r($_GET);
  */
 
 
-require 'form-view.php';
 
+require 'form-view.php';
