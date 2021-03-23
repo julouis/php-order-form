@@ -86,7 +86,15 @@
             <button type="submit" name="submit" class="btn btn-primary">Order!</button>
         </form>
 
-        <footer>You already ordered <strong>&euro; <?php echo $totalValue ?></strong> in pizza(s) and drinks.</footer>
+        <footer>
+
+        <!-- MESSAGE POUR DELIVERY, SI DELEVERY EST DECLARE, ALORS AFFICHER TEMPS DE LIVRAISON -->
+        <?php if (isset($delivery)){ ?>
+        <p>Your order will be fullfiled in <?php echo $delivery ?> minutes</p> 
+        <?php } ?>
+        <p> already ordered <strong>&euro; <?php echo $totalValue ?></strong> in pizza(s) and drinks.</p>
+        
+        </footer>
     </div>
 
     <!-- Message d'erreur si un espace de formulaire est laissé vide -->

@@ -7,26 +7,26 @@ session_start();
 
 // SESSION GARDE EN MEMOIRE LES GET TANT QUE LE NAVIGATEUR N'EST PAS FERME
 // ISSET AVANT POUR VERIFIER LA PRESENCE D'UNE DONNE ET DONC EVITER UNE ERREUR
-$sessionEmail="";
-if (isset($_GET['email'])){
+$sessionEmail = "";
+if (isset($_GET['email'])) {
     $_SESSION['email'] = $_GET['email'];
 }
-if (isset($_GET['street'])){
+if (isset($_GET['street'])) {
     $_SESSION['street'] = $_GET['street'];
 }
-if (isset($_GET['streetnumber'])){
+if (isset($_GET['streetnumber'])) {
     $_SESSION['streetnumber'] = $_GET['streetnumber'];
 }
-if (isset($_GET['city'])){
+if (isset($_GET['city'])) {
     $_SESSION['city'] = $_GET['city'];
 }
-if (isset($_GET['zipcode'])){
+if (isset($_GET['zipcode'])) {
     $_SESSION['zipcode'] = $_GET['zipcode'];
 }
-if (isset($_GET['pizzas'])){
+if (isset($_GET['pizzas'])) {
     $_SESSION['pizzas'] = $_GET['pizzas'];
 }
-if (isset($_GET['drinks'])){
+if (isset($_GET['drinks'])) {
     $_SESSION['drinks'] = $_GET['drinks'];
 }
 
@@ -48,8 +48,9 @@ var_dump($_SESSION);
 /* whatIsHappening(); */
 
 // ISSET RETURN FUNCION
-function issetCheck($getElement){
-    if (isset($_SESSION[$getElement])){
+function issetCheck($getElement)
+{
+    if (isset($_SESSION[$getElement])) {
         echo $_SESSION[$getElement];
     }
 }
@@ -81,13 +82,21 @@ $drinks = [
 
 $totalValue = 0;
 
-if(isset($_GET['pizzas'])){
+if (isset($_GET['pizzas'])) {
     $pizzasChoice = $_GET['pizzas'];
-    foreach($pizzasChoice as $i => $pizza){
+    foreach ($pizzasChoice as $i => $pizza) {
         $unitPrice = $pizzas[$i]['price'];
         $totalValue += $unitPrice;
     }
 }
+if (isset($_GET['drinks'])) {
+    $drinksChoice = $_GET['drinks'];
+    foreach ($drinksChoice as $i => $drink) {
+        $unitPrice = $drinks[$i]['price'];
+        $totalValue += $unitPrice;
+    }
+}
+
 
 /* 
 echo '<br/>';
@@ -116,16 +125,27 @@ $formComplete = "";
 if (isset($_GET['submit'])) {
     if (empty($_GET['email'])) {
         $error = "<li>Please enter a mail</li>";
-    } if (empty($_GET['street'])) {
+    }
+    if (empty($_GET['street'])) {
         $error .= "<li>Please enter a street</li>";
-    } if (empty($_GET['streetnumber'])) {
+    }
+    if (empty($_GET['streetnumber'])) {
         $error .= "<li>Please enter a street number</li>";
-    } if (empty($_GET['city'])) {
+    }
+    if (empty($_GET['city'])) {
         $error .= "<li>Please enter a city</li>";
-    } if (empty($_GET['zipcode'])) {
+    }
+    if (empty($_GET['zipcode'])) {
         $error .= "<li>Please enter a zipcode</li>";
     } else {
         $formComplete = "Form is complete, thank you";
+        /* PARTIE POUR DUREE DE LIVRAISON, SE TRIGGER SI AUCUN GET NE MANQUE */
+        $delivery = 60;
+        if (isset($_GET['express_delivery'])) {
+            if ($_GET['express_delivery']) {
+                $delivery = 30;
+            }
+        }
     };
 }
 
