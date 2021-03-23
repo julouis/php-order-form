@@ -26,7 +26,7 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="email">E-mail:</label>
-                    <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email address" value="<?php echo $_SESSION['email'] ?>" />
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email address" value="<?php echo issetCheck('email') ?>" />
                 </div>
                 <div></div>
             </div>
@@ -37,21 +37,21 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="street">Street:</label>
-                        <input type="text" name="street" id="street" class="form-control" placeholder="Enter your street address" value="<?php echo $_SESSION['street'] ?>">
+                        <input type="text" name="street" id="street" class="form-control" placeholder="Enter your street address" value="<?php echo issetCheck('street') ?>">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="streetnumber">Street number:</label>
-                        <input type="number" id="streetnumber" name="streetnumber" class="form-control" placeholder="Enter your street number" value="<?php echo $_SESSION['streetnumber'] ?>">
+                        <input type="number" id="streetnumber" name="streetnumber" class="form-control" placeholder="Enter your street number" value="<?php echo issetCheck('streetnumber') ?>">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="city">City:</label>
-                        <input type="text" id="city" name="city" class="form-control" placeholder="Enter your city name" value="<?php echo $_SESSION['city'] ?>">
+                        <input type="text" id="city" name="city" class="form-control" placeholder="Enter your city name" value="<?php echo issetCheck('city') ?>">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="zipcode">Zipcode</label>
-                        <input type="number" id="zipcode" name="zipcode" class="form-control" placeholder="Enter your zip code" value="<?php echo $_SESSION['zipcode'] ?>">
+                        <input type="number" id="zipcode" name="zipcode" class="form-control" placeholder="Enter your zip code" value="<?php echo issetCheck('zipcode') ?>">
                     </div>
                 </div>
             </fieldset>

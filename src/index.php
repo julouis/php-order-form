@@ -7,7 +7,6 @@ session_start();
 
 // SESSION GARDE EN MEMOIRE LES GET TANT QUE LE NAVIGATEUR N'EST PAS FERME
 // ISSET AVANT POUR VERIFIER LA PRESENCE D'UNE DONNE ET DONC EVITER UNE ERREUR
-
 $sessionEmail="";
 if (isset($_GET['email'])){
     $_SESSION['email'] = $_GET['email'];
@@ -48,7 +47,12 @@ function whatIsHappening()
 var_dump($_SESSION);
 /* whatIsHappening(); */
 
-
+// ISSET RETURN FUNCION
+function issetCheck($getElement){
+    if (isset($_SESSION[$getElement])){
+        echo $_SESSION[$getElement];
+    }
+}
 
 //your products with their price.
 
@@ -76,11 +80,21 @@ $drinks = [
 ];
 
 $totalValue = 0;
+
+if(isset($_GET['pizzas'])){
+    $pizzasChoice = $_GET['pizzas'];
+    foreach($pizzasChoice as $i => $pizza){
+        $unitPrice = $pizzas[$i]['price'];
+        $totalValue += $unitPrice;
+    }
+}
+
+/* 
 echo '<br/>';
 
 var_dump($pizzas[1]);
 echo '<br/>';
-var_dump($_SESSION['pizzas']);
+var_dump($_SESSION['pizzas']); */
 
 // CHECK EMPTY FORM
 
